@@ -6,9 +6,18 @@ public class BitSetIPStorage implements IPStorage {
     private final BitSet negativeNumbers;
     private final BitSet positiveNumbers;
 
-    public BitSetIPStorage(BitSet negativeNumbers, BitSet positiveNumbers) {
+    private BitSetIPStorage(BitSet negativeNumbers, BitSet positiveNumbers) {
         this.negativeNumbers = negativeNumbers;
         this.positiveNumbers = positiveNumbers;
+    }
+
+    private static class SingletonHolder {
+        public static final BitSetIPStorage HOLDER_INSTANCE =
+                new BitSetIPStorage(new BitSet(Integer.MAX_VALUE), new BitSet(Integer.MAX_VALUE));
+    }
+
+    public static BitSetIPStorage getInstance() {
+        return SingletonHolder.HOLDER_INSTANCE;
     }
 
     @Override
@@ -28,5 +37,11 @@ public class BitSetIPStorage implements IPStorage {
     @Override
     public long getIPCount() {
         return negativeNumbers.cardinality() + positiveNumbers.cardinality();
+    }
+
+    @Override
+    public void clear() {
+        negativeNumbers.clear();
+        positiveNumbers.clear();
     }
 }
