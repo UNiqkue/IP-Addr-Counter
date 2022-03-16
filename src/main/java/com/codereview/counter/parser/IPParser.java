@@ -10,6 +10,12 @@ public class IPParser {
 
     private static final int IP_OCTETS_COUNT = 4;
 
+    private static final int SHIFT_FOR_FIRST_OCTET = 24;
+
+    private static final int SHIFT_FOR_SECOND_OCTET = 16;
+
+    private static final int SHIFT_FOR_THIRD_OCTET = 8;
+
 //    регулярное на данный момент не используется, т.к. замедляет время выполнения примерно в 3 раза
 //    private static final String IP_REGEX = "^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)(\\.|$)){4}\\b";
 
@@ -23,18 +29,17 @@ public class IPParser {
         if (Objects.isNull(ipAddress) || ipAddress.trim().isEmpty()) {
             throw new WrongFormatException("The ip address can not be null or empty");
         }
-        int ipHash = 0;
+
         String[] ipOctets = ipAddress.split(DOT_REGEX);
+
         if (IP_OCTETS_COUNT != ipOctets.length) {
             throw new WrongFormatException("Wrong format of ip address: " + ipAddress);
         }
-        for (int i = 0; i < ipOctets.length; i++) {
-            String byteStrOctet = ipOctets[i];
-            int byteIntOctet = Integer.parseInt(byteStrOctet);
-            ipHash |= byteIntOctet << 8 * (3 - i);
-        }
 
-        return ipHash;
+        return Integer.parseInt(ipOctets[0]) << SHIFT_FOR_FIRST_OCTET |
+                Integer.parseInt(ipOctets[1]) << SHIFT_FOR_SECOND_OCTET |
+                Integer.parseInt(ipOctets[2]) << SHIFT_FOR_THIRD_OCTET |
+                Integer.parseInt(ipOctets[3]);
     }
 
 }
