@@ -2,6 +2,8 @@ package com.codereview.counter.storage;
 
 import com.codereview.counter.dao.BitSetIPStorage;
 import com.codereview.counter.dao.IPStorage;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

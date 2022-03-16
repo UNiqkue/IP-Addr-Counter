@@ -23,13 +23,9 @@ public class BitSetIPStorage implements IPStorage {
     @Override
     public void addIPIfNotExists(int ipHash) {
         if (ipHash >= 0) {
-            if (!positiveNumbers.get(ipHash)) {
-                positiveNumbers.set(ipHash);
-            }
+            positiveNumbers.set(ipHash);
         } else {
-            if (!negativeNumbers.get(-ipHash)) {
-                negativeNumbers.set(-ipHash);
-            }
+            negativeNumbers.set(-ipHash);
         }
 
     }

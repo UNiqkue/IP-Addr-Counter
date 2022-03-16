@@ -19,3 +19,4 @@
 *.jar
 ip_addresses
 /log/
+dependency-reduced-pom.xml

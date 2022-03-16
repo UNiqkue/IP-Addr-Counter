@@ -8,6 +8,8 @@ public class IPParser {
 
     private static final String DOT_REGEX = "\\.";
 
+    private static final int IP_OCTETS_COUNT = 4;
+
 //    регулярное на данный момент не используется, т.к. замедляет время выполнения примерно в 3 раза
 //    private static final String IP_REGEX = "^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)(\\.|$)){4}\\b";
 
@@ -23,13 +25,13 @@ public class IPParser {
         }
         int ipHash = 0;
         String[] ipOctets = ipAddress.split(DOT_REGEX);
-        if (4 != ipOctets.length) {
+        if (IP_OCTETS_COUNT != ipOctets.length) {
             throw new WrongFormatException("Wrong format of ip address: " + ipAddress);
         }
         for (int i = 0; i < ipOctets.length; i++) {
             String byteStrOctet = ipOctets[i];
             int byteIntOctet = Integer.parseInt(byteStrOctet);
-            ipHash += byteIntOctet * (int) Math.pow(256, 3 - i);
+            ipHash |= byteIntOctet << 8 * (3 - i);
         }
 
         return ipHash;
