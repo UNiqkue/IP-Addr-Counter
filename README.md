@@ -65,7 +65,7 @@ AMD Ryzen 5 5500, 16 GB, Windows 10
 При использовании HashSet или данного примера
 ```java
 fileStorage.getLines()
-    .flatMapToInt(line -> IntStream.of(ipParser.parseTInot(line)))
+    .flatMapToInt(line -> IntStream.of(ipParser.parseToInt(line)))
     .distinct()
     .count();
 ```

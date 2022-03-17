@@ -30,14 +30,14 @@ public class Application {
         );
 
         log.info("Started at " + OffsetDateTime.now());
-        Instant start = Instant.now();
+        Instant startTime = Instant.now();
 
         log.info("Unique IP count: " + ipCounterService.getUniqueIPCount());
 
-        Instant end = Instant.now();
+        Instant endTime = Instant.now();
         log.info("Finished at " + OffsetDateTime.now());
 
-        log.info("All duration time in Millis: " + Duration.between(start, end).toMillis());
+        log.info("All duration time in Millis: " + Duration.between(startTime, endTime).toMillis());
     }
 
     private static String getFilePath(String[] args) {
