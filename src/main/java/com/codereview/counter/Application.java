@@ -35,9 +35,9 @@ public class Application {
         log.info("Unique IP count: " + ipCounterService.getUniqueIPCount());
 
         Instant end = Instant.now();
-        log.info("Started at " + OffsetDateTime.now());
+        log.info("Finished at " + OffsetDateTime.now());
 
-        log.info("Millis: " + Duration.between(start, end).toMillis());
+        log.info("All duration time in Millis: " + Duration.between(start, end).toMillis());
     }
 
     private static String getFilePath(String[] args) {
