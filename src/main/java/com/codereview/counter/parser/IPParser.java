@@ -16,9 +16,6 @@ public class IPParser {
 
     private static final int SHIFT_FOR_THIRD_OCTET = 8;
 
-//    регулярное на данный момент не используется, т.к. замедляет время выполнения примерно в 3 раза
-//    private static final String IP_REGEX = "^((25[0-5]|2[0-4]\\d|1\\d{2}|[1-9]?\\d)(\\.|$)){4}\\b";
-
     /**
      * Parse ip address to byte format in int presentation
      *
